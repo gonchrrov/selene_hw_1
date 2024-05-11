@@ -66,8 +66,7 @@ def test_fill_form():
     s('#submit').click()
 
     # Проверка заполненных данных
-    browser.element(('css selector', '.modal-content')).element(('css selector', 'table')).all(
-        ('css selector', 'tr')).all(('css selector', 'td'))[1::2].should(
+    browser.element('.modal-content').element('table').all('tr').all('td')[1::2].should(
         have.exact_texts(
             'Name Surname',
             'fakemail@mail.ru',
@@ -80,3 +79,4 @@ def test_fill_form():
             'Moscow 1, Red Square',
             'NCR Delhi'
         ))
+
