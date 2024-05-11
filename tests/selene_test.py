@@ -36,7 +36,7 @@ def test_fill_form():
     ss('#hobbiesWrapper [class*=checkbox]')[1].click()
 
     # Загрузка файла
-    s('#uploadPicture').send_keys(os.path.abspath('/Users/goncharov/Downloads/picture.jpg'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('./pics/picture.jpg'))
 
     # Заполнение адреса
     s('#currentAddress').type('Moscow 1, Red Square')
