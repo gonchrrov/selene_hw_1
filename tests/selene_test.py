@@ -29,31 +29,31 @@ def test_fill_form():
     s('.react-datepicker__day--003').click()
 
     # Выбор предметов математика и история
-    s('#subjectsContainer input').type('Maths').press_tab()
+    s('#subjectsInput').type('Maths').press_tab()
 
     # Проставление чекбокса "хобби"
     ss('#hobbiesWrapper [class*=checkbox]')[0].click()
     ss('#hobbiesWrapper [class*=checkbox]')[1].click()
 
     # Загрузка файла
-    browser.element('#uploadPicture').send_keys(os.path.abspath('./pics/picture.jpg'))
+    s('#uploadPicture').send_keys(os.path.abspath('./pics/picture.jpg'))
 
     # Заполнение адреса
     s('#currentAddress').type('Moscow 1, Red Square')
 
     # Заполнение штата
     s('#state').click()
-    s('#state [class$=menu] [class$=option]').click()
+    s('#state').s('[class$=option]').should(have.text('NCR')).click()
 
     # Заполнение города
     s('#city').click()
-    s('#city [class$=menu] [class$=option]').click()
+    s('#city').s('[class$=option]').should(have.text('Delhi')).click()
 
     # Подтверждение
     s('#submit').click()
 
     # Проверка заполненных данных
-    browser.element('.modal-content').element('table').all('tr').all('td')[1::2].should(
+    s('.modal-content').s('table').ss('tr').all('td').even.should(
         have.exact_texts(
             'Name Surname',
             'fakemail@mail.ru',
@@ -65,4 +65,5 @@ def test_fill_form():
             'picture.jpg',
             'Moscow 1, Red Square',
             'NCR Delhi'
-        ))
+        )
+    )
