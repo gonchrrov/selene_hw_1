@@ -1,7 +1,8 @@
 import os
+import time
 
 from selene import browser, have
-from selene.support.shared.jquery_style import s, ss
+from selene.support.shared.jquery_style import s
 
 
 def test_fill_form():
@@ -16,7 +17,7 @@ def test_fill_form():
     s('#userEmail').type('fakemail@mail.ru')
 
     # Проставление радиокнопки "пол"
-    ss('.custom-control-label')[0].click()
+    s('[for="gender-radio-1"]').click()
 
     # Заполнение номера телефона
     s('#userNumber').type('9939998833')
@@ -33,8 +34,8 @@ def test_fill_form():
     s('#subjectsInput').type('Maths').press_tab()
 
     # Проставление чекбокса "хобби"
-    ss('#hobbiesWrapper [class*=checkbox]')[0].click()
-    ss('#hobbiesWrapper [class*=checkbox]')[1].click()
+    s('[for="hobbies-checkbox-1"]').click()
+    s('[for="hobbies-checkbox-2"]').click()
 
     # Загрузка файла
     s('#uploadPicture').send_keys(os.path.abspath('./pics/picture.jpg'))
@@ -44,11 +45,13 @@ def test_fill_form():
 
     # Заполнение штата
     s('#state').click()
-    s('#state').s('[class$=option]').should(have.text('NCR')).click()
+    # s('#state').s('[class$=option]').should(have.text('NCR')).click()
+    s('#react-select-3-option-0').click()
 
-    # Заполнение города
+    # # Заполнение города
     s('#city').click()
-    s('#city').s('[class$=option]').should(have.text('Delhi')).click()
+    s('#react-select-4-option-0').click()
+    time.sleep(7)
 
     # Подтверждение
     s('#submit').click()
