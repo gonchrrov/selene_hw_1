@@ -1,5 +1,4 @@
 import os
-import time
 
 from selene import browser, have
 from selene.support.shared.jquery_style import s
@@ -51,7 +50,6 @@ def test_fill_form():
     # # Заполнение города
     s('#city').click()
     s('#react-select-4-option-0').click()
-    time.sleep(7)
 
     # Подтверждение
     s('#submit').click()
